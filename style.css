@@ -185,9 +185,9 @@ nav{
     box-sizing: border-box;
 }
 
-nav h1{
-    width: 33vw;
-}
+/* nav h1{
+    width: 100vw;
+} */
 
 /*main*/
 
@@ -206,7 +206,7 @@ main{
     flex-direction: column;
     gap: 1em;
     align-items: center;
-    margin-bottom: 7em;
+    margin-bottom: 3em;
 }
 
 .home-project{
@@ -388,13 +388,155 @@ main.about>div.abt-head{
     padding-bottom: 8em;
 }
 
+.pfp{
+    width: 100%; 
+    aspect-ratio: 3/4; 
+    object-fit: cover;
+    border-radius: 0.2em;
+}
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1100px){
+
+    /*home*/
+
+    .home-project{
+        width: 85vw;
+    }
+    
+    .home-description{
+        width: 50%;
+        margin-bottom: 2em;
+    }
+
+    .links{
+        width: 60%;
+    }
+
+    /*projects*/
+
+    .project-page{
+        width: 55%;
+    }
+
+    .project-page img{
+        width: 55vw;
+    }
+
+    .dual-image, .tri-image{
+        width: 70vw;
+    }
+
+    .dual-image img{
+        width: 49.5%;
+    }
+    
+    .tri-image img{
+        width: 32.75%;
+    }
+
+    
+    /*about*/
+
+    main.about{
+        width: 80%;
+        padding-bottom: 8em;
+    }
+
+    main.about>div.abt-head{
+        /* width: 95vw; */
+        padding-bottom: 3em;
+    }
+}
+
+
+@media screen and (max-width: 600px){
+
     h1{
         font-size: 20pt;
     }
     
     h2{
         font-size: 14pt;
+    }
+
+    p{
+        font-size: 11pt;
+    }
+
+    /*home*/
+
+    .home-project{
+        width: 95vw;
+        flex-direction: column;
+    }
+
+    .home-project img, .home-project .project-description{
+        width: 100%;
+    }
+
+    .home-project .project-description{
+        padding: 0 1em 1em 1em;
+    }
+
+    .project-description h2{
+        margin-bottom: 1em;
+    }
+    
+    .home-description{
+        width: 90%;
+        margin-bottom: 3em;
+    }
+
+    .links{
+        width: 60%;
+    }
+
+    /*projects*/
+
+    .project-page{
+        width: 95%;
+    }
+
+    .dual-image, .tri-image{
+        width: 95vw;
+    }
+
+    .project-page img{
+        width: 95vw;
+    }
+
+    .dual-image, .tri-image{
+        width: 95vw;
+    }
+
+    .dual-image img{
+        width: 49.5%;
+    }
+    
+    .tri-image img{
+        width: 32.75%;
+    }
+
+    /*about*/
+
+    main.about{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4em 0;
+        padding-bottom: 8em;
+    }
+
+    .pfp{
+        width: 100%; 
+        aspect-ratio: 4/3; 
+        object-position: top;
+        border-radius: 0.2em;
+    }
+
+    main.about>div.abt-head{
+        width: 95vw;
+        padding-bottom: 3em;
     }
 }
