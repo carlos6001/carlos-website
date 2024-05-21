@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carlos Sanchez — Cherry Speakers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="UTF-8">
+        <meta name="keywords" content="mechanical engineer, portfolio, resume, mechanical design, engineer">
+        <meta name="description" content="HTML and CSS demo starter kit. Use this to create other demos.">
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <h1><a href="../index.html">Projects</a></h1>
+            <h1 style="text-align: center">Carlos Sanchez</h1>
+            <h1 style="text-align: right"><a href="about.html">About</a></h1>
+        </nav>
+        <main class="project-page">
+            <!-- This section is the project introduction -->
+            <h1 class="header">
+                Cherry Speakers
+            </h1>
+            <h2 class="header">
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+            </h2>
+            <hr>
+            <sub class="header">Personal Project / Design / Adative Manufacturing &nbsp;&nbsp;•&nbsp;&nbsp; May 2024</sub>
+            <hr>
+            <p class="header">
+                As a part of spring carnival at Carnegie Mellon, students build themed fun houses called booths and compete with other student organizations. This past semester, spring 2024, I was asked by the Student Dormitory Council to design and construct a few props for their Animal Crossing themed booth. I was given complete creative freedom on the “cherry speakers” and took the opportunity and long deadline to make an interesting and functional design.
+            </p>
+            <div class="dual-image header">
+                <img src="../images/cherry-speakers/reference-image.jpg">
+                <img src="../images/cherry-speakers/cherry-speakers.jpg">
+            </div>
+            <h5>
+                <!-- This is a caption -->
+                The cherry speakers as seen in Animal Crossing: New Horizons (Left, Image Credit: GameWith) ad the Final Product (Right)
+            </h5>
+            <!-- This section is the project body -->
+            <h1>
+                Design Constraints
+            </h1>
+            <p><b>Design Around Speakers:</b> I was not building from the ground up (thankfully), instead, I was creating an enclosure for a set of Minirig speakers that one of the SDC members already owned. These speakers were cylindrical with an input panel on the side that sat ~3mm proud of the curved edge.</p>
+            <div class="dual-image">
+                <img src="../images/cherry-speakers/speaker-reference.jpg">
+                <img src="../images/cherry-speakers/speaker-model.jpg">
+            </div>
+            <h5>
+                <!-- This is a caption -->
+                Minirig (Left, image credit Minirig) and Simple 3d Model of Speakers (Right)
+            </h5>
+
+            <p>
+                <b>Easy to Assemble:</b> The speakers are Bluetooth and rechargeable by a cable that attaches to the input panel, so I wanted the cherry enclosure to be easily removable to allow for charging. The event lasts 4 days, so it is unrealistic to expect the battery to last the whole event.
+                <br><br>
+                <b>Easy to Paint:</b> The cherry speakers from animal crossing are red, green, black, and gold, and the boundaries between colors are crisp. While the SDC painters could handle fine painting, I wanted to ease that burden as much as possible.
+                <br><br>
+                <b>Able to Access 3.5mm Jack:</b> The existing speakers have a 3.5mm output jack to connect to a subwoofer. I was asked to allow access to this jack if possible to connect the subwoofer.
+                <br><br>
+                <b>Low Cost:</b> The Student Dormitory Council had a sizeable budget for their booth, but much of this went to lumber and paints. I was asked to keep costs low.
+                <br><br>
+                <b>3D Printable:</b> 3D printing was a cost effective way to approach this problem, and allowed good tolerances, so any design component would need to be made with the limitations of FDM 3D printing in mind.
+                <br><br>
+                <b>Stem to be Made of PVC Pipe:</b> To keep printing time low, the stem would be made from heat bending PVC pipe. This would also provide a route for the subwoofer wire without cutting the surface of the cherry.
+            </p>
+            <h1>Design Process</h1>
+            <p>I started under the impression that I would only need to create a “cup” that could hold the speaker and a foam shell would be carved by someone more skilled at sculpting than I am. As it turns out, many foams are flammable, and booth organizations are discouraged from using foam where possible to lower the risk of fires. So the project scope increased to include designing almost the whole speaker.</p>
+            <h3>First Iteration</h3>
+            <p>Knowing the speakers would be assembled and disassembled frequently, I wanted to avoid fasteners like screws. A screwdriver would just be another item that needs to be kept track of; if the speakers could be assembled by hand, they would be easier to use. I started with a modification of the cup design, where the speaker 1) slides into the cup, 2) rotates to hold in place, and 3) slides into the larger speaker body. his design would use the existing speaker grill as the external part, eliminating the gold ring seen on the real model.</p>
+            <div class="tri-image">
+                <img src="../images/cherry-speakers/sketch-v1.jpg">
+                <img src="../images/cherry-speakers/speaker-cup.jpg">
+                <img src="../images/cherry-speakers/full-assembly-v1.jpg">
+            </div>
+            <h5>Diagram (Left), Speaker Cup (Center), and Full First Assembly (Right)</h5>
+            <p>This design would have been ok, but had a number of small problems. It relied on friction to hold the speakers in, it did not allow access to the subwoofer jack, and the front of the speaker was too flat, interrupting the visual flow.</p>
+            <h3>Second Iteration</h3>
+            <p>With the second iteration, I allowed myself to use a decorative speaker mesh. I first increased the size of the body of the cherry by increasing the size of the revolved shape. I then took a cylindrical cut out of the front and made a matching insert. I made the mesh pattern using a linear sketch pattern offset to follow a honeycomb shape. I made the ring a separate piece to allow each component to be a solid color.</p>
+            <div class="tri-image">
+                <img src="../images/cherry-speakers/decorative-ring.jpg">
+                <img src="../images/cherry-speakers/speaker-mesh.jpg">
+                <img src="../images/cherry-speakers/front-half-body.jpg">
+            </div>
+            <h5>Decorative Ring (Left), Speaker Mesh (Center), and Front Half of Body (Right)</h5>
+            <p>The small pin protruding from the bottom of the body (pictured above, right) is matched by a cutout in both the ring and mesh, maintaining alignment. The revolved shape is slightly heart-shaped, not just a half-circle, so if the ring or mesh were out of rotation, the pieces would not perfectly line up. Adding the decorative mesh allows the speaker to sit further from the front of the enclosure, meaning the subwoofer jack would align with the hole in the top of the cherry.
+            <br><br>
+            For the second iteration, I focused on assembly. I realized that if I split the cherry down the center along the hole for the PVC, the PVC pipe could be used as a pin to hold everything closed. I designed the second iteration to have L shaped inserts and matching holes on a cylindrical insert and hole. This L shape means the halves first slot together, then rotate, so the PVC pin would prevent the halves from separating by preventing rotation. The speaker would be held in place and prevented from rotating in the cup or sliding out the front with the protruding input plate. The input plate would slots into the back half in the top cutout</p>
+            <div class="dual-image">
+                <img src="../images/cherry-speakers/assembly-of-speaker.gif">
+                <img src="../images/cherry-speakers/cherry-halves.gif">
+            </div>
+            <h5>Animation of Assembly of Speaker (Left) and Cherry Halves (Right)</h5>
+            <p>These L shaped cutouts and inserts were not spaced at an equal angle, the 2 upper ones have a smaller angle between them than with the lower one. This prevents assembly of the halves in an incorrect orientation, which would be possible with equal angular spacing.</p>
+            <div class="dual-image">
+                <img src="../images/cherry-speakers/insert-profile.jpg">
+                <img src="../images/cherry-speakers/cherry-back-half.jpg">
+            </div>
+            <h5>Profile of the Speaker Insert. Notice the Smaller Angle Between the Top Inserts than with The Bottom One (Left) Cherry Back Half with Flat Edge Cutout (Right)
+            </h5>
+            <p>The design featured in the animations above is very near to the final design, so it features minor decisions (filets, clearance cuts, etc.) that were achieved by printing many miniature sized versions of the housing and correcting. Before any major design decisions, I printed a miniature to make sure I had not made any huge oversights and to correct for any movements with high friction. This was especially useful because I was only allotted 1 spool of 3D printer filament, and the final product needed nearly the full spool, so I could not afford large reprints.
+            <br><br>
+            One final design feature was to add a flat edge to the back so the speakers could sit without rolling. I chose the angle and depth of cut based on the center of mass of the assembly, using my 3D printers slicer to estimate the mass of each printed part.</p>
+            <h1>Manufacturing</h1>
+            <p>As stated previously, my contribution to this prop was entirely 3D printed, so the design had to fit on my print bed. 3D printing as a process is not perfect, especially FDM, and I encountered problems specific to 3D printing that I have previously learned about in an additive manufacturing class I took at Carnegie Mellon.
+            <br><br>
+            <b>Middle Layer “Hourglass” Shrinkage:</b> Because FDM layers cool over previous layers, the middle layers of a print usually shrink compared to the beginning and final layers. The first few layers are adhered to the build plate, which will not shrink, so those layers don’t shrink. After enough layers, adding a layer squeezes the one below it as it cools and shrinks, this compounds with more layers. Nearing the end of the print, the last layers have fewer layers on top of them, meaning they do not shrink as much from layers above them cooling. This phenomenon is important to consider in a design like this, as proper clearance is needed for the cylindrical insert if the middle layers shrink.</p>
+            <img src="../images/cherry-speakers/hourglass-diagram.jpg" style="margin-top: 3em;">
+            <h5>“Hourglass” Layer Shrinking Diagram</h5>
+            <p><b>Edge Warping:</b> Support structures and print bed adhesion methods in FDM printing are often more to prevent the edges of a print from curling up than to actually support material overhangs. As layers cool on top of previous ones, they shrink and compress those previous layers. This compression causes them to curl, especially at the edges, as the material would rather curl than compress.</p>
+            <img src="../images/cherry-speakers/edge-warping.jpg" style="margin-top: 3em;">
+            <h5>Edge Warping at the Build Plate Diagram</h5>
+            <p>Middle layer shrinkage was not much of a problem with the full size print, though it was present. Edge warping was something I failed to consider during the first cherry print. This caused edge curl, especially on the back half of the cherry, I chose to print on top of the insert (shown below) to make sure the hole for the speaker did not become oblong, but this meant the flat edges of the cherry were not attached to the build plate, but supports. This led to the first cherry having an unsightly seam around the middle due to the outside edge curling.</p>
+            <img src="../images/cherry-speakers/print-orientation.jpg" style="margin-top: 3em;">
+            <h5>Print Orientation for the First Full Sized Cherry</h5>
+            <p>As a final design iteration, I cut out the insert from the back half and superglued it in later. This allowed more of the back half to be in contact with the build plate, and saved a lot of material that would have been support.</p>
+            <div class="dual-image">
+                <img src="../images/cherry-speakers/interior-ring.jpg">
+                <img src="../images/cherry-speakers/back-half.jpg">
+            </div>
+            <h5>Separated Back Half (Right) and Inside Ring (Left) for Better 3D Printing Results</h5>
+            <h1>Final Thoughts</h1>
+            <p>I had no involvement in the stems or painting of the speakers, it took more than just myself to make these a usable prop, but their design was my doing. If I was given the means to, I would have printed the parts in color, rather than grey and black, but I am more than happy with how they came out. With the acknowledgement that this prop is one of many that was made or creatively sourced for the booth, I will mention that the Student Dormitory Council won both the category best and overall best booth awards.
+            <br><br>
+            I’m very happy with the final design, and think most of the choices I made did not compromise the looks of the prop while adding functionality. The total material cost excluding the speakers was under $30.
+            <br><br>
+            One of my biggest takeaways from this is that 3D printing is not a magic bullet, and comes with its own rogues gallery of problems and quirks. If I were to do this project again I would still lean heavily on 3D printing, but for future engineering work I will be mindful of its limitations.</p>
+            <img src="../images/cherry-speakers/cherry-speakers.jpg" style="margin-top: 3em;">
+            <h5>The Finished Cherry Speakers on a Shelf in the SDC Booth (Image credit @sdc.booth on Instagram)</h5>
+        </main>
+        
+    </body>
+</html>
