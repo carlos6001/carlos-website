@@ -21,15 +21,15 @@
                 Lab Robot
             </h1>
             <h2 class="header">
-                Lorem ipsum dolor sit amet, consectetur adipiscing
+                Moving Sillicon Wafers on a Budget
             </h2>
             <hr>
-            <sub class="header">Personal Project / Design / Adative Manufacturing &nbsp;&nbsp;•&nbsp;&nbsp; May 2024</sub>
+            <sub class="header">Hacker Fab / Design / Arduino &nbsp;&nbsp;•&nbsp;&nbsp; February - May 2024</sub>
             <hr>
             <p class="header">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
+                In my 2024 spring semester at Carnegie Mellon, I joined the Hacker Fab, an open source, student-run lab dedicated to developing a transistor tape-out process that is cheap enough for small labs or individuals to build themselves. There is much to be said about this lab and it has been laid out much better at the <a href="https://hacker-fab.gitbook.io/hacker-fab-space">Hacker Fab</a> website than what I can do here. I was one of only a few mechanical engineers on the team, so I was assigned work on the lab robot.
             </p>
-            <img src="../images/lab robot/filler2.jpg">
+            <img src="..\images/lab robot/Lab Robot Hero.jpg">
             <h5>
                 <!-- This is a caption -->
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -38,22 +38,56 @@
 
             <!-- This section is the project body -->
             <h1>
-                Lorem ipsum dolor sit amet
+                The Lab Robot
             </h1>
-            <p><b>Lorem ipsum dolor sit amet,</b> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+            <p>The lab is not a cleanroom, and making the lab a cleanroom would be prohibitively expensive for an individual or small lab. This is not a problem yet, as many of the patterns the lab is currently making use a very small area of the chip, which means a lot of the workable area of the chip can be ruined by dust or other imperfections without affecting electrical characteristics. That said, clean room conditions would make things like glass layers much less likely to shatter. To achieve these conditions, instead of creating clean room conditions in the whole lab, a 3D printer or other small gantry system would be used to automate most of the process, and a ventilation system would be built around this.<br><br>My task was to repurpose a Creality Ender 5 S1 3D printer into a machine that could move silicon wafers, or find another way to do this if the 3D printer was not suitable.</p>
+
+            <h1>
+                How to move chips without tweezers
+            </h1>
+
+            <p>There are a number of ways to move chips that do not require a "tweezer" style design, but after determining that the Ender 5 S1 is capable of reliably moving 0.1mm increments in the Z-direction, a tweezer design was selected. The tweezer design was selected for its ability to leave the top clear for fluid application during wet steps. Any changes to the style of mover should be made with this constraint in mind.<br><br>The tweezer design introduces a number of challenges that may not be immediately apparent. To aid in the future development of this design or others, I will be describing the challenges I have encountered in working on the robot.</p>
+
+            <h1>
+                Quantifiable parameters of<br>the lab robot
+            </h1>
 
             <h3>
-                Lorem ipsum dolor sit amet
+                3D Printing
+            </h3>
+            
+            <p>A majority of the components of the current design are 3d printed. This saves on cost and allows the design to be changed rapidly, but has associated problems. First, when printing edges or corners that need to have a sharp angle, it is best to print with one wall that makes up the corner perpendicular to the bed, and the other parallel. This prevents rounding. (Insert Diagram) At relatively low torque applications like this, most of these parts can be 3D printed and not fail, but the central gear can strip out if torque is high enough and gear module is low enough.</p>
+
+            <h3>
+                Servo Motor and Current Sensing
             </h3>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+            <p>The choice to use a servo motor at all introduces problems. While servo motors provide precise control over positioning, they do not like to apply constant force. This means all servos used will burn out eventually under constant load. The grabber was initially designed to use SG90 servos, which would burn out after about 3 minutes. While this is likely more than a chip will ever be held in the final product, the high torque servo used in the current design has been able to hold for 6 minutes without any sign of burnout.<br><br>The current sensing setup measures voltage drop across a resistor with a known value in series with the servo motor and uses these values to calculate current. As it stands, the setup is not scaled to any specific units for current. Because the current values are low enough to fluctuate a lot, the value used is actually the sum of the last n readings. The number of readings is currently set to 30, which provides a good balance of stability when holding, and speed when there is rapid current change.<br><br>As a brief overview, the arduino code closes the jaws until either reaching the closed position, or until reaching a current reading that signals the jaws are holding onto something. If they close completely the loop resets, if they are holding something, they continue to do so while waiting to be told to open. In this waiting state, if current becomes too high the jaws are opened by 1 servo position, and if the current is too low the jaws close by 1 servo position. If current dips very low suddenly, position closes completely, or position opens completely, it triggers a dropped chip and resets.<br><br>The current values are 400 for holding threshold, 800 to reduce grip, 200 to increase grip, and 120 to trigger a dropped chip. These values are all subject to change depending on friction in the system and servo power. When finding these values, I would recommend setting the increase grip threshold to the current while the jaws are closing while not holding anything. The holding threshold can be up to 1000, but I would recommend only making it a few hundred more than the increase grip, as making this value too high can damage the chip. The holding threshold should be about in the middle of the increase and reduce grip threshold, but the reduce grip threshold needs to be high enough that reducing position by 1 does not put current too low, hence the current value of 800.</p>
 
-            <h4>
-                Lorem ipsum dolor sit amet
-            </h4>
+            <h3>
+                Rack and Pinion
+            </h3>
+
+            <p>Using a rack and pinion to control the motion of the tweezers (rather than something like a servo arm in a slot) means the linear motion resulting from moving the servo one unit will be the same throughout the servo's range of motion. As mentioned in the "3D Printing" section, the teeth on the central gear or the arms can tear out if the gear module is too small or if torque is too high. However, increasing the gear module creates more backlash in the gears, which is undesirable. Currently, the system uses a 0.8 module.</p>
+
+            <h3>
+                Nylon Bushings and Steel Rod
+            </h3>
+
+            <p>To keep friction in the system low and ensure precise arm movements, the arms are mounted by attached nylon bushings that ride on steel pins. This eliminates the need for the 3D printed body to be accurate enough for low friction movement. The nylon bushings slide well on the steel rods, but have some "wobble". Initial designs for the arms only used one layer of bushings, which means this wobble allows the arms to splay outward when holding something. Apart from this just looking amateurish, it also makes the arms more likely to lose grip on a chip. To prevent this, 2 bushings should be used per connection point and the distance between the bushings should be large (~10mm). The newest design features this change, but the body needs to be extended and longer pins must be used to allow for wider arms.</p>
+
+            <h3>
+                Arm Edge Material
+            </h3>
+
+            <p>For much of my time developing the grabber, I have printed the arms completely. This means the part meant to grab the chip edge is 3D printed. These arms have been relatively reliable (80%-90% success in chip pick-up), but are worse than arms with a metal tip. I achieved this by using heat insert threads and using grub screws as the gripping surface. This design minimizes contact area, increases surface hardness, and features threads that aid in holding. Other designs featured rubber padded arms that failed. These rubber arms, and any other design that does not feature a hard edge, would push the build plate down as they moved over a chip because the edge was allowed to cave. These are not worth pursuing over a screw/pin design.</p>
+
+            <h3>
+                Chip Edge
+            </h3>
+
+            <p>The edge of a chip can play a large role in determining if it will be successfully picked up. Chips with edges perpendicular to the build plate, as well as chips with edges that overhang the build plate are more likely to be picked up successfully than chips with edges that slope up from the build plate. The screw design mentioned in the previous section is not affected by the chip edge as much as fully 3D printed arms or padded arms.</p>
             
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-
             <img src="../images/lab robot/filler2.jpg">
             <h5>
                 <!-- This is a caption -->
