@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carlos Sanchez — Project Name</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="UTF-8">
+        <meta name="keywords" content="mechanical engineer, portfolio, resume, mechanical design, engineer">
+        <meta name="description" content="HTML and CSS demo starter kit. Use this to create other demos.">
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <h1><a href="../index.html">Projects</a></h1>
+            <h1 style="text-align: center">Carlos Sanchez</h1>
+            <h1 style="text-align: right"><a href="../about.html">About</a></h1>
+        </nav>
+        <main class="project-page">
+            <!-- This section is the project introduction -->
+            <h1 class="header">
+                Bass Thumb Rest
+            </h1>
+            <h2 class="header">
+                Improving Ergonomics of a Classic Guitar Design
+            </h2>
+            <hr>
+            <sub class="header">Personal Project / Design / Adative Manufacturing &nbsp;&nbsp;•&nbsp;&nbsp; May 2024</sub>
+            <hr>
+            <p class="header">
+                I've played bass for about 7 years. I have 2 fender Jazz Basses and love their looks on stage, but I often find their playability to be somewhat lacking. This isn't a huge surprise, the Jazz Bass has been relatively unchanged since its creation in 1960. My goal with this project was to improve playability of these instruments using additive manufacturing.
+            </p>
+
+            <h1>
+                Introduction
+            </h1>
+
+            <p>The Fender Aerodyne Jazz Bass features a Precision Bass pickup in the neck position, offering a more rounded sound and better hum canceling than the standard Jazz Bass pickup.
+            </p>
+            
+            <div class="dual-image">
+                <img src="../images/thumb-rest/aerodyne.jpg">
+                <img src="../images\thumb-rest\p pickup.jpg">
+            </div>
+
+            <h5>
+                <!-- This is a caption -->
+                Left: Fender Aerodyne Jazz Bass (Image Credit: Haggerty's Music), Right: Precision Bass Pickup (Image Credit: Sweetwater)
+            </h5>
+
+            <!-- This section is the project body -->
+            <h1>
+                Initial Ideation
+            </h1>
+            <p>To improve playability, I wanted to create a concave shape that would overhang the edge of the pickup.
+            </p>
+
+            <img src="../images\thumb-rest\sketch.jpg">
+            <h5>
+                Initial Sketch
+            </h5>
+
+            <p>The design changed pretty significantly before the final product, but the goal of increasing playability with a part that retrofits remained the same.<br><br>Before 3d modeling the part in SolidWorks, I took dimensions of the existing pickup and the mounting screws using a set of calipers. These dimensions can be found online, but vary slightly between models.
+            </p>
+
+            <h1>
+                CAD Model
+            </h1>
+
+            <div class="dual-image">
+                <img src="..\images\thumb-rest\cad side.png">
+                <img src="..\images\thumb-rest\cad iso.png">
+            </div>
+            <h5>
+                Left: Side Profile, Right: Sweep Profile
+            </h5>
+
+            <p>I started with a side profile of the thumb rest, and a swept path for it to follow. I used known dimensions to choose the overhang and the width of the swept path. I wanted to completely cover the mounting screw nub, keeping in mind that the rest of the pickup was rectangular. To prevent the nub from cutting through the side wall, I offset the path slightly more than the nub protrudes, and adjusted the path accordingly.
+            </p>
+
+            <img src="..\images\thumb-rest\cad iso 2.png">
+            <h5>
+                Rectangular Cutout
+            </h5>
+            
+            <p>I cut out a rectangular portion that would allow the rest to hold tight against the pickup. I followed up with a cut for the nub, which is an ellipse, again using the measured dimensions.</p>
+
+            <img src="..\images\thumb-rest\nub.png">
+            <h5>
+                Rectangular Cutout
+            </h5>
+
+            <p>The final necessary steps were adding the hole for the mounting screw and knocking off any sharp corners that the user would come in contact with. The mounting screw is a very small pan head, but I wanted the head to sit below the surface of the rest, so I created a counterbore that was slightly larger than the screw head.</p>
+            
+            <img src="..\images\thumb-rest\herohalf.png">
+            <h5>
+                Roughly Finished Thumb Rest
+            </h5>
+
+            <p>
+                This would be perfectly functional as a thumb rest, but because I was able to print for free using high quality Stratasys machines as part of an Additive Manufacturing course I was taking, I decided to add more complex geometry.<br><br>I created a honeycomb shape using a 2-directional sketch pattern with one direction angled. I then used an extruded cut on the portions of this pattern that existed in on the overhang within the existing filets.
+            </p>
+            
+            <div class="dual-image">
+                <img src="..\images\thumb-rest\honeycomb.png">
+                <img src="..\images\thumb-rest\her.png">
+            </div>
+            <h5>
+                Left: Honeycomb Pattern, Right: Final Cad Model
+            </h5>
+
+            <h1>
+                Printing and Installation
+            </h1>
+
+            <p>
+                While I do have experience with FDM printing, this print was completed by staff at CMU's Techspark because the Stratasys machines are not directly accessible to students. I printed the regular and complex version of the part.<br><br>The resulting parts both fit well, with very little room to pivot on the single mounting screw. The ergonomics of the bass are far improved.
+            </p>
+            
+            <div class="dual-image">
+                <img src="..\images\thumb-rest\print.jpg">
+                <img src="..\images\thumb-rest\bass.jpg">
+            </div>
+
+            <p>
+                If this project is revisited, one area of improvement could be the addition of a flexible material that interfaces between the bottom of the rest and the top surface of the bass body. Because the body is only routed for the pickup itself, the overhanging side of the thumb rest can restrict the lowering of the pickup.
+            </p>
+
+            <img src="..\images\thumb-rest\diagram.png">
+
+            <p>
+                The addition of a flexible material under the rest would allow the pickup to be raised and lowered without creating a gap or contacting the top surface. Because the part was made specifically for the bass, the pickup height is already determined, but to make a general fit version, flexible material would eliminate the need for specific measurements.
+            </p>
+        </main>
+        <footer>
+            <div class="links">
+                <sub>
+                    <a href="pdf\CarlosSanchezResume2025.pdf" target="_blank">
+                        Resume
+                    </a>
+                </sub>
+                <sub>
+                    <a href="https://www.linkedin.com/in/carlosrchez/" target="_blank">
+                        LinkedIn
+                    </a>
+                </sub>
+                <sub>
+                    <a href="mailto:crsanchez@alumni.cmu.edu">
+                        Email
+                    </a>
+                </sub>
+            </div>
+        </footer>
+    </body>
+</html>
